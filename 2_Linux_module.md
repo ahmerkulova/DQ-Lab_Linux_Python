@@ -137,7 +137,7 @@ Rostov-on-Don
 Perm
 Voronezh
 ```
-##Задание 2 - AWK
+## Задание 2 - AWK
 Скопируйте файл access_log на вашу виртуальную машину - ваш датасет для заданий 2 и 3. Это пример лога веб-сервера, в который записываются все обращения к сайту. Формат этого файла следующий: IP - - [DATE] "method query protocol" answer-code answer-weight-in-bytes "from-where-did-user-came" "user agent"
 
 ```bash
@@ -152,7 +152,7 @@ access_log  100% 5980KB  53.2MB/s   00:00
 arina@ubuntu:~/task_data$ cat access_log | awk -F '"' '{if (count[$6]++ >= max) max=count[$6]} END {for (n in count) if(max == count[n]) print count[n], n}'
 9787 Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)
 ```
-##Задание 3 - sed
+## Задание 3 - sed
 
 3.1. При выводе на экран замаскируйте все IP-адреса фразой "IP address" для всех запросов со смартфона Nexus 5X.
 
