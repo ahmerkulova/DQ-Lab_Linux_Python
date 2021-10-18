@@ -146,15 +146,9 @@ arina@ubuntu:/$ readlink /proc/1463/fd/1
 ```bash
 arina@ubuntu:~$ sudo -i
 [sudo] password for arina:
-root@ubuntu:~# lsof -n -itcp
-COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-systemd-r  618 systemd-resolve   13u  IPv4  21170      0t0  TCP 127.0.0.53:domain (LISTEN)
-sshd       695            root    3u  IPv4  24122      0t0  TCP *:ssh (LISTEN)
-sshd       695            root    4u  IPv6  24133      0t0  TCP *:ssh (LISTEN)
+root@ubuntu:~# lsof -n -itcp | grep 'ESTABLISHED'
 sshd       971            root    4u  IPv4  26371      0t0  TCP 192.168.56.102:ssh->192.168.56.1:63134 (ESTABLISHED)
 sshd       980            root    4u  IPv4  26418      0t0  TCP 192.168.56.102:ssh->192.168.56.1:63135 (ESTABLISHED)
 sshd      1097           arina    4u  IPv4  26371      0t0  TCP 192.168.56.102:ssh->192.168.56.1:63134 (ESTABLISHED)
-sshd      1097           arina   10u  IPv6  26740      0t0  TCP [::1]:6010 (LISTEN)
-sshd      1097           arina   11u  IPv4  26741      0t0  TCP 127.0.0.1:6010 (LISTEN)
 sshd      1119           arina    4u  IPv4  26418      0t0  TCP 192.168.56.102:ssh->192.168.56.1:63135 (ESTABLISHED)
 ```
