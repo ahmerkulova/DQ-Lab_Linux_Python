@@ -1,21 +1,16 @@
 # list of characters and actions to set
-main = 'Бабушка, бабушка, купим'
-characters = ['курочку', 'уточку', 'индюшонка', 'кисоньку', 'собачонку', 'коровёнку', 'поросёнка', 'телевизор']
-actions = ['Курочка по зёрнышку кудах-тах-тах', 'Уточка та-ти-та-та', 'Индюшонок фалды-балды', 'А кисуня мяу-мяу', 'Собачонка гав-гав', 'Коровёнка муки-муки', 'Поросёнок хрюки-хрюки', 'Телевизор надо, надо, ведь у нас такое стадо']
-counter = 0
-for _ in range(len(characters) - 1):
-    for _ in range(2):
-        print(main, characters[counter], end='!\n')  # new character
-    counter += 1
-    counter_act = counter
-    while counter_act != 0:  # character's action
-        if counter_act > 1:
-            print(actions[counter_act - 1], end=',\n')
+
+intro = 'Бабушка, бабушка, купим'
+characters = [('курочку', 'Курочка по зёрнышку кудах-тах-тах'), ('уточку', 'Уточка та-ти-та-та'), ('индюшонка', 'Индюшонок фалды-балды'), ('кисоньку', 'А кисуня мяу-мяу'), ('собачонку', 'Собачонка гав-гав'), ('коровёнку', 'Коровёнка муки-муки'), ('поросёнка', 'Поросёнок хрюки-хрюки'), ('телевизор', 'Телевизор надо, надо, ведь у нас такое стадо')]
+for idx, current in enumerate(characters):
+    if current[0] == 'телевизор':
+        break
+    else:
+        print(f'{intro} {current[0]}!\n{intro} {current[0]}!')
+    for item in characters[0: idx+1][::-1]:
+        if item[0] == 'курочку':
+            print(item[1], end='.\n')
         else:
-            print(actions[counter_act - 1], end='.\n')
-        counter_act -= 1
-if counter == len(characters) - 1:  # final part
+            print(item[1], end=',\n')
     print()
-    for i in range(2):
-        print(main, characters[-1], end='!\n')
-    print(actions[-1], end='!\n')
+print(f'{intro} {characters[-1][0]}!\n{intro} {characters[-1][0]}!\n{characters[-1][1]}!')

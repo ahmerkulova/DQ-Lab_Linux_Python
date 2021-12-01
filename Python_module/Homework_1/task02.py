@@ -3,12 +3,12 @@
 #     Вывод: название получившейся суммы
 # Для перевода строки в число используйте словарь, для перевода числа в строку - список.
 
-values = list(range(0, 18))
-nums = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать']
-info = dict(zip(nums, values))
+from itertools import count
+digits = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать']
+digits_in_letters = dict(zip(digits, count(0, 1)))
 a, b = input(), input()
-if a in info and b in info:
-    c = info[a] + info[b]
-    print(nums[c])
+if a not in digits_in_letters or b not in digits_in_letters:
+    print('Something went wrong')
 else:
-    print('что-то пошло не так')
+    c = digits_in_letters[a] + digits_in_letters[b]
+    print(digits[c])
