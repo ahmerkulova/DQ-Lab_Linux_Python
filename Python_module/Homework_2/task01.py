@@ -12,20 +12,20 @@ class Student:
         self.results.append(result)
 
     def got_offer(self):
-      self.counter = 0
-      for i in range(len(self.results)):
-        if self.results[i] in 'Passed':
-          self.counter += 1
-      if self.counter == 4:
-        return f'{self.counter} of {len(self.results)} - congrats, you got the offer!'
-      else:
-        return f'{self.counter} of {len(self.results)} - sorry, you got no offer!'
+        self.counter = 0
+        for i in range(len(self.results)):
+            if self.results[i] in 'Passed':
+                self.counter += 1
+        if self.counter == 4:
+            return f'{self.counter} of {len(self.results)} - congrats, you got the offer!'
+        else:
+            return f'{self.counter} of {len(self.results)} - sorry, you got no offer!'
 
     def result_info(self):
-      print(f'Student name {self.first_name} {self.last_name}, age {self.age}:')
-      for i in range(len(self.skills)):
-        print(f'\t{self.skills[i]} result: {self.results[i]}')
-      print(f'{self.got_offer()}\n')
+        print(f'Student name {self.first_name} {self.last_name}, age {self.age}:')
+        for i in range(len(self.skills)):
+            print(f'\t{self.skills[i]} result: {self.results[i]}')
+        print(f'{self.got_offer()}\n')
 
 john = Student('John', 'Smith', 17)
 john.got_skill('Linux', 'Passed')
