@@ -4,7 +4,11 @@ class Student:
         self.last_name = last_name
         self.age = age
         self.skills = ['English']
+        self.skills_needed = ['English', 'SQL', 'Python', 'Linux']
         self.enroll_training()
+
+    def __str__(self):
+        return f'Student name {self.first_name} {self.last_name}, age {self.age}:'
 
     def enroll_training(self):
         self.is_learning = True
@@ -12,20 +16,13 @@ class Student:
     def learn_skill(self, skill_name):
         self.skills.append(skill_name)
 
-    def get_offer(self):
-        self.skills_needed = 0
-        for i in range(len(self.skills)):
-            if self.skills[i] in ['SQL', 'Python', 'Linux', 'English']:
-                self.skills_needed += 1
-        if self.skills_needed != 4:
+    def make_offer(self):
+        self.skills.sort()
+        self.skills_needed.sort()
+        if self.skills != self.skills_needed:
             return False
         else:
             return True
-
-    def print_result(self):
-        print(f'Student name {self.first_name} {self.last_name}, age {self.age}:')
-        print(f'\tList of learned skills: {", ".join(self.skills)}')
-        print(f'Student got offer: {self.get_offer()}\n')
 
 
 john = Student('John', 'Smith', 17)
@@ -42,6 +39,9 @@ peter = Student('Peter', 'Parker', 31)
 peter.learn_skill('Linux')
 peter.learn_skill('SQL')
 
-john.print_result()
-mary.print_result()
-peter.print_result()
+print(john.__str__())
+print(f'\tGot offer: {john.make_offer()}')
+print(mary.__str__())
+print(f'\tGot offer: {mary.make_offer()}')
+print(peter.__str__())
+print(f'\tGot offer: {peter.make_offer()}')
