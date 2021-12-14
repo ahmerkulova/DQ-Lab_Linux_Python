@@ -7,9 +7,8 @@ class Item:
         self.price = price
         self.item_list.append(price)
 
-    @staticmethod
     def avg_price():
-        print(f'The average price of all items is {round(sum(Item.item_list) / len(Item.item_list), 2)}')
+        return round(sum(Item.item_list) / len(Item.item_list), 2)
 
 
 class Tablet(Item):
@@ -18,8 +17,8 @@ class Tablet(Item):
         super().__init__(category, title, price)
         self.display = display
 
-    def print_info(self):
-        print(f'Category: {self.category}, Title: {self.title}, Price: {self.price}, Display: {self.display} inches')
+    def __str__(self):
+        return f'Category: {self.category}, Title: {self.title}, Price: {self.price}, Display: {self.display} inches'
 
 
 class Fridge(Item):
@@ -28,20 +27,21 @@ class Fridge(Item):
         super().__init__(category, title, price)
         self.capacity = capacity
 
-    def print_info(self):
-        print(f'Category: {self.category}, Title: {self.title}, Price: {self.price}, Capacity: {self.capacity} liters')
+    def __str__(self):
+        return f'Category: {self.category}, Title: {self.title}, Price: {self.price}, Capacity: {self.capacity} liters'
 
 
 ipad = Tablet('Tablets', 'iPad pro', 1899, 11)
 ipad_mini = Tablet('Tablets', 'iPad mini', 999, 8)
-ariston = Fridge('Dual-chamber fridges', 'Hotpoint Ariston', 1500, 350)
+ariston = Fridge('Dual-chamber fridges', 'Hotpoint Ariston', 1899, 350)
 smeg = Fridge('Single-chamber fridges', 'Smeg', 2100, 350)
 
-ipad.print_info()
-ipad_mini.print_info()
-ariston.print_info()
-smeg.print_info()
-Item.avg_price()
+print(ipad.__str__())
+print(ipad_mini.__str__())
+print(ariston.__str__())
+print(smeg.__str__())
+print(f'The average price of all items is {Item.avg_price()}')
 
-print(smeg is ariston)
+print(ipad.price is ariston.price)
+print(ipad.display is ipad_mini.display)
 print(smeg.capacity is ariston.capacity)
