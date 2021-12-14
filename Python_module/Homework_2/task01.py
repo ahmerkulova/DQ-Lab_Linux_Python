@@ -24,8 +24,7 @@ class Student:
 
     def print_result(self):
         print(f'Student name {self.first_name} {self.last_name}, age {self.age}:')
-        for i in range(len(self.skills)):
-            print(self.skills[i])
+        print(f'\tList of learned skills: {", ".join(self.skills)}')
         print(f'Student got offer: {self.get_offer()}\n')
 
 
