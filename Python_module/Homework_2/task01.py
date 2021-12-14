@@ -4,6 +4,9 @@ class Student:
         self.last_name = last_name
         self.age = age
         self.skills = ['English']
+        self.enroll_training()
+
+    def enroll_training(self):
         self.is_learning = True
 
     def learn_skill(self, skill_name):
@@ -15,15 +18,15 @@ class Student:
             if self.skills[i] in ['SQL', 'Python', 'Linux', 'English']:
                 self.skills_needed += 1
         if self.skills_needed != 4:
-            return 'Sorry, you got no offer!'
+            return False
         else:
-            return 'Congrats, you got the offer!'
+            return True
 
     def print_result(self):
         print(f'Student name {self.first_name} {self.last_name}, age {self.age}:')
         for i in range(len(self.skills)):
             print(self.skills[i])
-        print(f'{self.get_offer()}\n')
+        print(f'Student got offer: {self.get_offer()}\n')
 
 
 john = Student('John', 'Smith', 17)
