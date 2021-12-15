@@ -23,6 +23,11 @@ class Tablet(Item):
     def __str__(self):
         return f'Brand: {self.brand}, Model: {self.model}, Price: {self.price}, Display: {self.display} inches'
 
+    def __eq__(self, other):
+        if not isinstance(other, Tablet):
+            return False
+        return self.display == other.display
+
 
 class Fridge(Item):
     item_list = []
@@ -35,6 +40,10 @@ class Fridge(Item):
     def __str__(self):
         return f'Brand: {self.brand}, Model: {self.model}, Price: {self.price}, Capacity: {self.capacity} liters'
 
+    def __eq__(self, other):
+        if not isinstance(other, Fridge):
+            return False
+        return self.capacity == other.capacity
 
 ipad = Tablet('Apple', 'iPad pro', 1899, 11)
 ipad_mini = Tablet('Apple', 'iPad mini', 999, 8)
@@ -46,11 +55,10 @@ print(ipad_mini.__str__())
 print(ariston.__str__())
 print(smeg.__str__())
 
+print(Item.avg_price())
 print(Tablet.avg_price())
 print(Fridge.avg_price())
-print(Item.avg_price())
 
-# print(ipad.price is ariston.price)
-# print(ipad.display is ipad_mini.display)
-# print(smeg.capacity is ariston.capacity)
-
+print(ipad == ipad_mini)
+print(ariston == smeg)
+print(ariston == ipad)
