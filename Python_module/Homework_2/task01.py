@@ -17,18 +17,19 @@ class Student:
         self.skills.append(skill_name)
 
     def make_offer(self):
-        self.skills.sort()
-        self.skills_needed.sort()
-        if self.skills != self.skills_needed:
-            return False
-        else:
-            return True
+        for item in self.skills_needed:
+            if item not in self.skills:
+                return False
+            else:
+                continue
+        return True
 
 
 john = Student('John', 'Smith', 17)
 john.learn_skill('Linux')
 john.learn_skill('SQL')
 john.learn_skill('Python')
+john.learn_skill('C++')
 
 mary = Student('Bloody', 'Mary', 45)
 mary.learn_skill('Linux')
