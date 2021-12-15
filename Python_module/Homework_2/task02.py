@@ -7,8 +7,9 @@ class Item:
         self.price = price
         __class__.item_list.append(price)
 
-    def avg_price(__class__):
-        return round(sum(__class__.item_list) / len(__class__.item_list), 2)
+    @classmethod
+    def avg_price(cls):
+        return round(sum(cls.item_list) / len(cls.item_list), 2)
 
 
 class Tablet(Item):
@@ -45,9 +46,9 @@ print(ipad_mini.__str__())
 print(ariston.__str__())
 print(smeg.__str__())
 
-print(Tablet.avg_price(Tablet))
-print(Fridge.avg_price(Fridge))
-print(Item.avg_price(Item))
+print(Tablet.avg_price())
+print(Fridge.avg_price())
+print(Item.avg_price())
 
 # print(ipad.price is ariston.price)
 # print(ipad.display is ipad_mini.display)
