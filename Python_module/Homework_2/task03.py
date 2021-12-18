@@ -10,53 +10,52 @@
 import random
 
 
+class Speed:
+    direction_speed = {'south': 5, 'east': 1, 'west': 1}
+
+    def __init__(self, direction=''):
+        self.direction = random.choice(list(self.direction_speed.keys()))
+
+    @property
+    def speed(self):
+        return self.direction_speed.get(self.direction)
+
+
 class Skier:
-    route_log = []
+    route_history = []
+    distance_history = []
 
-    def __init__(self, name):
-        self.name = name
-        self.race_time = 17
+    def __init__(self):
+        self.direction = Speed
         self.distance = 0
-        self.sec = 0
-
-
-class Rolling(Skier):
-
-    def __init__(self, name):
-        super().__init__(name)
-        self.available_direction = ['south', 'west', 'east']
-        self.get_direction()
-
-    def get_direction(self):
-        self.direction = random.choice(self.available_direction)
-        self.route_log.append(self.direction)
-        self.move(sec=1)
 
     def move(self, sec):
-        self.sec += 1
-        if self.sec >= self.race_time:
-            self.stop()
-        else:
-            if self.direction == 'south':
-                self.distance += 5 * sec
-            else:
-                self.distance += 1 * sec
-            print(self.distance)  # вот здесь корректно выводится итоговая дистанция
-            self.get_direction()
+        self.sec = sec
+        for i in range(sec):
+            speed_obj = Speed()
+            self.speed = speed_obj.speed
+            self.direction = speed_obj.direction
+            self.distance += self.speed
+            self.append_history_lists()
+            del speed_obj
 
-    def stop(self):
-        return f'Race is finished. Route log: {", ".join(self.route_log)}. Distance: {self.distance}'  # а здесь уже 0 для дистанции. куда она девается? берется из __init__ класса лыжника? почему?
+    def append_history_lists(self):
+        self.route_history.append(self.direction)
+        self.distance_history.append(self.distance)
 
-    def race_info(self):
-        return f'Skier total distance for {self.sec} seconds: {self.distance} meters' # здесь тоже ноль + для времени гонки (ожидаю 17)
+    def get_distance(self):
+        return f'Total distance: {self.distance}'
+
+    def get_direction(self, sec):
+        return f'Direction = {self.route_history[sec - 1]}, distance = {self.distance_history[sec - 1]}'
 
 
 def main():
-    skier = Skier('Joe')
-    print(skier.name)
-    Rolling(skier)
-    print(Rolling.stop(skier))
-    print(Rolling.race_info(skier))
-
+    skier = Skier()
+    skier.move(2)
+    print(skier.get_distance())
+    skier.move(10)
+    print(skier.get_distance())
+    print(skier.get_direction(sec=5))
 
 main()
