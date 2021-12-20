@@ -1,27 +1,30 @@
 class Item:
-    item_list = []
+    price_list = []
 
     def __init__(self, brand, model, price):
         self.brand = brand
         self.model = model
         self.price = price
-        __class__.item_list.append(price)
+        __class__.price_list.append(price)
 
     @classmethod
     def avg_price(cls):
-        return round(sum(cls.item_list) / len(cls.item_list), 2)
+        return round(sum(cls.price_list) / len(cls.price_list), 2)
+
+    def __str__(self):
+        return f'Brand: {self.brand}, Model: {self.model}, Price: {self.price}'
 
 
 class Tablet(Item):
-    item_list = []
+    price_list = []
 
     def __init__(self, brand, model, price, display):
         super().__init__(brand, model, price)
         self.display = display
-        __class__.item_list.append(price)
+        __class__.price_list.append(price)
 
     def __str__(self):
-        return f'Brand: {self.brand}, Model: {self.model}, Price: {self.price}, Display: {self.display} inches'
+        return f'{super().__str__()}, Display: {self.display} inches'
 
     def __eq__(self, other):
         if not isinstance(other, Tablet):
@@ -30,15 +33,15 @@ class Tablet(Item):
 
 
 class Fridge(Item):
-    item_list = []
+    price_list = []
 
-    def __init__(self, category, model, price, capacity):
-        super().__init__(category, model, price)
+    def __init__(self, brand, model, price, capacity):
+        super().__init__(brand, model, price)
         self.capacity = capacity
-        __class__.item_list.append(price)
+        __class__.price_list.append(price)
 
     def __str__(self):
-        return f'Brand: {self.brand}, Model: {self.model}, Price: {self.price}, Capacity: {self.capacity} liters'
+        return f'{super().__str__()}, Capacity: {self.capacity} liters'
 
     def __eq__(self, other):
         if not isinstance(other, Fridge):
@@ -50,10 +53,10 @@ ipad_mini = Tablet('Apple', 'iPad mini', 999, 8)
 ariston = Fridge('Hotpoint Ariston', 'HS 3200', 1899, 350)
 smeg = Fridge('Smeg', 'FAB28LPB5', 2200, 350)
 
-print(ipad.__str__())
-print(ipad_mini.__str__())
-print(ariston.__str__())
-print(smeg.__str__())
+print(ipad)
+print(ipad_mini)
+print(ariston)
+print(smeg)
 
 print(Item.avg_price())
 print(Tablet.avg_price())
