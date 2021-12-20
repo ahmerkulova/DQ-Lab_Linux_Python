@@ -30,7 +30,6 @@ class Skier:
         self.distance = 0
 
     def move(self, sec=1):
-        self.sec = sec
         for i in range(sec):
             speed_obj = Speed()
             self.speed = speed_obj.speed_value
@@ -50,7 +49,7 @@ class Skier:
         try:
             return f'Direction = {self.route_history[sec - 1]}, distance = {self.distance_history[sec - 1]}'
         except IndexError:
-            return f'Total time (sec): {self.sec}. Incorrect input'
+            return f'Incorrect input'
 
 
 def main():
