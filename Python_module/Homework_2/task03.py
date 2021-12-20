@@ -17,7 +17,7 @@ class Speed:
         self.direction = random.choice(list(self.direction_speed.keys()))
 
     @property
-    def speed(self):
+    def speed_value(self):
         return self.direction_speed.get(self.direction)
 
 
@@ -29,11 +29,11 @@ class Skier:
         self.direction = Speed
         self.distance = 0
 
-    def move(self, sec):
+    def move(self, sec=1):
         self.sec = sec
         for i in range(sec):
             speed_obj = Speed()
-            self.speed = speed_obj.speed
+            self.speed = speed_obj.speed_value
             self.direction = speed_obj.direction
             self.distance += self.speed
             self.append_history_lists()
@@ -47,15 +47,20 @@ class Skier:
         return f'Total distance: {self.distance}'
 
     def get_direction(self, sec):
-        return f'Direction = {self.route_history[sec - 1]}, distance = {self.distance_history[sec - 1]}'
+        try:
+            return f'Direction = {self.route_history[sec - 1]}, distance = {self.distance_history[sec - 1]}'
+        except IndexError:
+            return f'Total time (sec): {self.sec}. Incorrect input'
 
 
 def main():
     skier = Skier()
-    skier.move(2)
+    skier.move()  # with default value = 1
     print(skier.get_distance())
-    skier.move(10)
+    skier.move(10)  # with user value
     print(skier.get_distance())
     print(skier.get_direction(sec=5))
+    print(skier.get_direction(sec=100))
+
 
 main()
