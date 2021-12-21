@@ -23,7 +23,6 @@ class Speed:
 
 class Skier:
     route_history = []
-    distance_history = []
 
     def __init__(self):
         self.distance = 0
@@ -59,7 +58,7 @@ def main():
     skier.move(10)  # with user value
     print(skier.get_distance())
     print(skier.get_direction(sec=5))
-    print(skier.get_direction(sec=100))
+    # print(skier.get_direction(sec=100))
 
 
 main()
