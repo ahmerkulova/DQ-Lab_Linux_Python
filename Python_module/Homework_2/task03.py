@@ -26,30 +26,30 @@ class Skier:
     distance_history = []
 
     def __init__(self):
-        self.direction = Speed
         self.distance = 0
 
     def move(self, sec=1):
         for i in range(sec):
-            speed_obj = Speed()
-            self.speed = speed_obj.speed_value
-            self.direction = speed_obj.direction
+            self.speed = Speed().speed_value
+            self.direction = Speed().direction
             self.distance += self.speed
-            self.append_history_lists()
-            del speed_obj
-
-    def append_history_lists(self):
-        self.route_history.append(self.direction)
-        self.distance_history.append(self.distance)
+            self.route_history.append(self.direction)
 
     def get_distance(self):
         return f'Total distance: {self.distance}'
 
     def get_direction(self, sec):
-        try:
-            return f'Direction = {self.route_history[sec - 1]}, distance = {self.distance_history[sec - 1]}'
-        except IndexError:
-            return f'Incorrect input'
+        if sec > len(self.route_history):
+            raise SecValueError(sec)
+        return f'Direction = {self.route_history[sec - 1]}'
+
+
+class SecValueError(Exception):
+    def __init__(self, sec):
+        self.sec = sec
+
+    def __str__(self):
+        return f'{self.sec} sec is invalid input'
 
 
 def main():
